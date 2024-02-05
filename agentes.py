@@ -29,8 +29,27 @@ def getMedia(lista):
 
         return rA_A, rA_B, rA_C
 
+def getStaircase(number):
+    StairAgente_A =""
+    StairAgente_B =""
+    for i in range(0,number):
+        StairAgente_A += ("#"*(i+1)).rjust(number) + "\n"
+        StairAgente_B += ("#"*(number-i)).rjust(number) + "\n"
+    
+    return StairAgente_A, StairAgente_B
+
 numeros = np.array([33,2,3,4,5,6,7,8,9,10])
 Agente_A, Agente_B, Agente_C = getMedia(numeros)
+
+SAgente_A, SAgente_B = getStaircase(10)
 print("A= ", Agente_A)
 print("B= ", Agente_B)
 print("C= ", Agente_C)
+print(SAgente_A)
+print(SAgente_B)
+
+for i in range(1, 5):
+    espacios = 4 - i
+    escalones = i * "#"
+    linea = " " * espacios + escalones
+    print(linea)
