@@ -1,3 +1,8 @@
+# Nombre: Jhonathan Damian Guerrero Montoya
+# Grupo: 374
+# Programa: Ingeniería de Sistemas
+# Codigo fuente: autoría propia
+
 import time
 import sys
 import random
@@ -26,7 +31,7 @@ while True:
     #definimos la variable ejercitoUsuario como una lista vacia en donde se almacenaran los valores de las razas que el jugador escoja.
     ejercitoUsuario = []
     ejercitoMaquina = []
-    resultadoBatalla = 0
+    
     ayuda = input("Si/No: ").upper()
 
     if( ayuda == "SI" or ayuda == "S"):
