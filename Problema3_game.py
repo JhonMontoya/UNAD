@@ -17,7 +17,7 @@ def slow_print(text, delay=0.1):
 
 #Damos mensaje de bienvenida al juego.
 slow_print("Bienvenido al planeta Centauro")
-slow_print("El malvado Throm quiere invadir el planeta")
+slow_print("El malvado Throm quiere conquistar el planeta")
 
 #Definimos las variables diccionario para las dos razas, con sus respectivos valores.
 R_benevola={ "Ositos": 1, "Principes": 2, "Enanos": 3, "Caris": 4, "Fulos": 5}
