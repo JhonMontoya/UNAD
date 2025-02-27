@@ -7,7 +7,7 @@ import time
 import sys
 import random
 
-#Definimos la función slow_print, que imprime un texto con un delay de 0.1 segundos por caracter.
+#Definimos la función slow_print, que permite dar efectos de escritura lenta en pantalla.
 def slow_print(text, delay=0.1):
     for char in text:
         sys.stdout.write(char)
@@ -15,14 +15,13 @@ def slow_print(text, delay=0.1):
         time.sleep(delay)
     print()
 
-#Definimos las variables diccionario para las dos razas, con sus respectivos valores.
-
-R_benevola={ "Ositos": 1, "Principes": 2, "Enanos": 3, "Caris": 4, "Fulos": 5}
-R_malvada={ "Lolos": 2, "Fulanos": 2, "Hoggins": 2, "Lurcos": 3, "Trollis": 5}
-
 #Damos mensaje de bienvenida al juego.
 slow_print("Bienvenido al planeta Centauro")
 slow_print("El malvado Throm quiere invadir el planeta")
+
+#Definimos las variables diccionario para las dos razas, con sus respectivos valores.
+R_benevola={ "Ositos": 1, "Principes": 2, "Enanos": 3, "Caris": 4, "Fulos": 5}
+R_malvada={ "Lolos": 2, "Fulanos": 2, "Hoggins": 2, "Lurcos": 3, "Trollis": 5}
 
 while True:
     #Preguntamos al jugador si quiere ayudar a defender el planeta.
@@ -33,34 +32,48 @@ while True:
     ejercitoMaquina = []
     
     ayuda = input("Si/No: ").upper()
-
+    cantidadEjercito = random.randint(1, 7)
+    cantidadEjercitoMaquina = random.randint(1, 7)
     if( ayuda == "SI" or ayuda == "S"):
         slow_print("Excelente!, ahora haces parte de la resistencia")
         slow_print("escoje tu ejercito para la batalla", 0.05)
-        slow_print("Tienes derecho a escoger 5 unidades benevolas para tu ejercito", 0.05)
+        slow_print(f"Tienes derecho a escoger {cantidadEjercito} unidades benevolas para tu ejercito", 0.05)
         
-        while len(ejercitoUsuario) < 5:
+        while len(ejercitoUsuario) < cantidadEjercito:
             print("-------------------------------------------")
             i=1
             for raza in R_benevola:
                 print(i, ". ", raza)
                 i += 1
-            print("Selecciona una unidad benevola para tu ejercito (",len(ejercitoUsuario),"/5):")
+            print("Selecciona una unidad benevola para tu ejercito (",len(ejercitoUsuario),"/",cantidadEjercito,"):")
             seleccion = int(input())
             if seleccion in range(1, 6):
                 ejercitoUsuario.append(list(R_benevola.keys())[seleccion-1])
             else:
-                slow_print("Unidad no válida, intenta de nuevo.")
+                slow_print("Unidad no válida, intenta de nuevo.",0.02)
         slow_print("Buena elección", 0.05)
         slow_print("Tu ejercito está listo para la batalla", 0.05)
-        ejercitoMaquina = random.sample(list(R_malvada.keys()), 5)
+        ejercitoMaquina = random.sample(list(R_malvada.keys()), cantidadEjercitoMaquina)
         slow_print("El ejercito de Throm se acerca", 0.05)
         slow_print("Preparate para la batalla", 0.02)
         print("-------------------------------------------")
-        print("|Tus Unidades: | VS | Unidades de Throm: |")
-        for i in range(5):
+        print(f"|{'Tu ejer.:':10} |{'Poder:':3}| VS | {'Ejer. Throm:':10}|{'Poder:':3} |")
+        for i in range(max(cantidadEjercito, cantidadEjercitoMaquina)):
             print("-------------------------------------------")
-            print("|",ejercitoUsuario[i], "| \t", R_benevola[ejercitoUsuario[i]],  "| VS |", ejercitoMaquina[i], "| \t",R_malvada[ejercitoMaquina[i]],"|")
+            if i<len(ejercitoUsuario):
+                user_unit = ejercitoUsuario[i]
+                user_power = R_benevola[user_unit]
+            else:
+                user_unit = ""
+                user_power = ""
+
+            if i<len(ejercitoMaquina):
+                machine_unit = ejercitoMaquina[i]
+                machine_power = R_malvada[machine_unit]
+            else:
+                machine_unit = ""
+                machine_power = ""
+            print(f"| {user_unit:10} | {user_power:3} | VS | {machine_unit:10} | {machine_power:3} |")
         print("-------------------------------------------")
         totalUsuario = sum([R_benevola[unidad] for unidad in ejercitoUsuario])
         totalMaquina = sum([R_malvada[unidad] for unidad in ejercitoMaquina])
@@ -80,28 +93,42 @@ while True:
     else:
         slow_print("Has decidido aliarte con Throm")
         slow_print("Escoje tu ejercito para la batalla", 0.05)
-        slow_print("Tienes derecho a escoger 5 unidades malvadas para tu ejercito", 0.05)
-        while len(ejercitoUsuario) < 5:
+        slow_print(f"Tienes derecho a escoger {cantidadEjercito} unidades malvadas para tu ejercito", 0.05)
+    
+        while len(ejercitoUsuario) < cantidadEjercito:
             print("-------------------------------------------")
             i=1
             for raza in R_malvada:
                 print(i, ". ", raza)
                 i += 1
-            print("Selecciona una unidad malvada para tu ejercito (",len(ejercitoUsuario),"/5):")
+            print("Selecciona una unidad malvada para tu ejercito (",len(ejercitoUsuario),"/",cantidadEjercito,"):")
             seleccion = int(input())
             if seleccion in range(1, 6):
                 ejercitoUsuario.append(list(R_malvada.keys())[seleccion-1])
             else:
-                slow_print("Unidad no válida, intenta de nuevo.")
+                slow_print("Unidad no válida, intenta de nuevo.",0.02)
         slow_print("Ya has escgido tu ejercito ", 0.05)
-        ejercitoMaquina = random.sample(list(R_benevola.keys()), 5)
+        ejercitoMaquina = random.sample(list(R_benevola.keys()), cantidadEjercitoMaquina)
         slow_print("El ejercito de la resistencia se acerca", 0.05)
         slow_print("Preparate para la batalla", 0.02)
         print("-------------------------------------------")
-        print("|Tus Unidades: | VS | Unidades de la resistencia: |")
-        for i in range(5):
+        print(f"|{'Tu ejer.:':10} |{'Poder:':3}| VS | {'Ejer. Throm:':10}|{'Poder:':3} |")
+        for i in range(max(cantidadEjercito, cantidadEjercitoMaquina)):
             print("-------------------------------------------")
-            print("|",ejercitoUsuario[i], "| \t", R_malvada[ejercitoUsuario[i]],  "| VS |", ejercitoMaquina[i], "| \t",R_benevola[ejercitoMaquina[i]],"|")
+            if i<len(ejercitoUsuario):
+                user_unit = ejercitoUsuario[i]
+                user_power = R_malvada[user_unit]
+            else:
+                user_unit = ""
+                user_power = ""
+
+            if i<len(ejercitoMaquina):
+                machine_unit = ejercitoMaquina[i]
+                machine_power = R_benevola[machine_unit]
+            else:
+                machine_unit = ""
+                machine_power = ""
+            print(f"| {user_unit:10} | {user_power:3} | VS | {machine_unit:10} | {machine_power:3} |")
         print("-------------------------------------------")
         totalUsuario = sum([R_malvada[unidad] for unidad in ejercitoUsuario])
         totalMaquina = sum([R_benevola[unidad] for unidad in ejercitoMaquina])
@@ -120,9 +147,7 @@ while True:
     print("¿Deseas jugar de nuevo?")
     continuar = input("Si/No: ").upper()
     if(continuar == "NO" or continuar == "N"):
-        slow_print("Gracias por visitar el planeta Centauro")
+        slow_print("Gracias por visitar el planeta Centauro",0.02)
         break
     else:
         continue
-        
-    
