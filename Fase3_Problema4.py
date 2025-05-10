@@ -91,7 +91,7 @@ def matrices():
 
 print("*"*60)
 print("Bienvenido al programa")
-print("acontinuación se mostrara un menú de opciones")
+print("a continuación se mostrara un menú de opciones")
 
 while True:
     print("-"*60)
