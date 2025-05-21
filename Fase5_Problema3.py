@@ -1,6 +1,6 @@
 '''
     PROBLEMA 3:
-    Ester programa se desarrolla con el objetivo de ayudar a una empresa con el sistema de gestion de la informacion de sus empleados.
+    Este programa se desarrolla con el objetivo de ayudar a una empresa con el sistema de gestion de la informacion de sus empleados.
 
     Elaborado por: Jhonathan Damian Guerrero Montoya
     Grupo: 374
@@ -126,7 +126,7 @@ try:
             maximoSalario = salarioAnual
             empleadoMaximoSalario = info['Nombre']
     #Mostramos el total de salarios y el empleado con el salario más alto
-    print(f"Total de salarios anuales: ${totalSalarios}")
+    print(f"Total de salarios anuales: ${totalSalarios:.2f}")
     print(f"Empleado con el salario más alto es: {empleadoMaximoSalario} con un salario de ${maximoSalario}")
     print(50*"=")
 except Exception as e:

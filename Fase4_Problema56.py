@@ -9,7 +9,6 @@
 
 import time
 import sys
-import random
 
 #Definimos la función slow_print, que permite dar efectos de escritura lenta en pantalla.
 def slow_print(text, delay=0.1):
